@@ -1,0 +1,34 @@
+#include <iostream>
+
+class Academic {
+public:
+    void display() const {
+        std::cout << "Academic information\n";
+    }
+};
+
+class Sports {
+public:
+    void display() const {
+        std::cout << "Sports information\n";
+    }
+};
+
+class Student : public Academic, public Sports {   // Multiple inheritance
+public:
+    void displayAll() const {
+        Academic::display();    // Call Academic's display()
+        Sports::display();      // Call Sports' display()
+    }
+};
+
+int main() {
+    Student student;            // Create Student object
+
+    student.Academic::display(); // Resolve ambiguity using scope
+    student.Sports::display();   // Resolve ambiguity using scope
+
+    student.displayAll();        // Call both display functions
+
+    return 0;                   // End program
+}
